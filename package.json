@@ -1,0 +1,25 @@
+{
+  "name": "frontendjavascriptapplication",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goldissalar/FrontendJavascriptApplication.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goldissalar/FrontendJavascriptApplication/issues"
+  },
+  "homepage": "https://github.com/goldissalar/FrontendJavascriptApplication#readme",
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0"
+  }
+}
