@@ -27,5 +27,8 @@ jobs:
       - name: Lint Code
         run: npm run lint
 
+      - name: Change permissions for vite
+        run: chmod +x node_modules/.bin/vite
+
       - name: Build and Deploy
         run: node_modules/.bin/vite build --mode production
