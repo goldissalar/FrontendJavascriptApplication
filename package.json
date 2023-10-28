@@ -10,7 +10,7 @@
     "build:production": "vite build --mode production",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "lint": "eslint . --fix"
+    "lint": "next lint ."
   },
   "repository": {
     "type": "git",
