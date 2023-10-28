@@ -6,7 +6,6 @@ export default ({ command }) => {
   const plugins = [obfuscator()];
 
   return defineConfig({
-    base: "./",
     build: {
       outDir: 'dist',
       minify: production,
@@ -21,6 +20,7 @@ export default ({ command }) => {
     server: {
       port: 3000, // Port für den Entwicklungsserver
     },
+    base: './',
     plugins: production ? plugins : [],
   });
 };
