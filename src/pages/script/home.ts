@@ -1,6 +1,6 @@
 import { fetchApiData } from './api';
 
-function createDogCard(dogData) {
+export function createDogCard(dogData: any) {
     const dogCard = document.createElement('div');
     dogCard.classList.add('dog-card');
 
@@ -71,7 +71,8 @@ function showFavorites() {
     if (favoritesContainer) {
         const ul = document.createElement('ul');
         ul.classList.add("favorites-list");
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        let item = "";
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || '[]';
         for (const dogName of favorites) {
             const listItem = document.createElement('li');
             listItem.textContent = dogName;
@@ -90,7 +91,7 @@ window.addEventListener('load', () => {
     }
 });
 
-function showNotification(message, success = true) {
+function showNotification(message: string, success = true) {
     const notification = document.getElementById('notification');
     if (notification) {
         notification.textContent = message;

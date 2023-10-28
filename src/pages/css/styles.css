@@ -171,9 +171,10 @@ button:disabled {
 
 .notification {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #4CAF50;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #c00;
     color: #fff;
     padding: 10px;
     border-radius: 4px;
