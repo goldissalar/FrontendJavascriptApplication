@@ -6,7 +6,7 @@ export default ({ command }) => {
   const plugins = [obfuscator()];
 
   return defineConfig({
-    root: 'src',
+    root: '/FrontendJavascriptApplication/',
     build: {
       outDir: 'dist',
       minify: production,
