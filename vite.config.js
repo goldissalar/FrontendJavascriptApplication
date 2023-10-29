@@ -27,7 +27,7 @@ export default ({ command }) => {
     server: {
       port: 3000, // Port für den Entwicklungsserver
     },
-    base: './',
+    base: '/FrontendJavascriptApplication/',
     plugins: production ? plugins : [],
   });
 };
