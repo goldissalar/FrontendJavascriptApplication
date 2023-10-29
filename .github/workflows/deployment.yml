@@ -34,7 +34,7 @@ jobs:
         run: node_modules/.bin/vite build --mode production
 
       - name: Upload production-ready build from dist
-        uses: action/upload-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: production-files
           path: ./dist
