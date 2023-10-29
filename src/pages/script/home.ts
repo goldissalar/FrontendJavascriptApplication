@@ -106,7 +106,7 @@ function showNotification(message: string, success = true) {
 // Hauptfunktion, um die Seite zu initialisieren
 async function init() {
     // API-Daten abrufen
-    console.log("TEST");
+    console.log("TEST Development Branch");
     const apiData = await fetchApiData('https://dog.ceo/api/breeds/list/all');
     // API-Daten in den Container rendern
     await renderApiData(apiData.message);
