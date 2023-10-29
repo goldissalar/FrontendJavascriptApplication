@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "npm run build:production",
     "build:development": "vite",
-    "build:production": "vite build --mode production",
+    "build:production": "vite build src --mode production",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "lint": "next lint ."

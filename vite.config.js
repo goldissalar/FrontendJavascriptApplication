@@ -6,6 +6,7 @@ export default ({ command }) => {
   const plugins = [obfuscator()];
 
   return defineConfig({
+    root: 'src',
     build: {
       outDir: 'dist',
       minify: production,
