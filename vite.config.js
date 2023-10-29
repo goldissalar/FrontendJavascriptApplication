@@ -6,7 +6,7 @@ export default ({ command }) => {
   const plugins = [obfuscator()];
 
   return defineConfig({
-    root: 'src',
+    root: 'src/pages',
     build: {
       outDir: 'dist',
       minify: production,
@@ -15,7 +15,7 @@ export default ({ command }) => {
           entryFileNames: 'assets/[name]-[hash].js',
           chunkFileNames: 'assets/[name]-[hash].js',
           assetFileNames: 'assets/[name]-[hash][extname]',
-        },
+        }
       },
     },
     server: {
