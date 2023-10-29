@@ -3,7 +3,7 @@ name: Development Workflow
 on:
   push:
     branches:
-      - development
+      - main
 
 jobs:
   build:
@@ -21,9 +21,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # todo
-      #- name: Run Tests
-      #  run: npm test
+      - name: Run Tests
+        run: npm test
 
       - name: Lint Code
         run: npm run lint

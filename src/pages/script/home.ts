@@ -54,7 +54,7 @@ async function renderApiData(apiData: any[]) {
     }
 }
 
-function updateFavoriteButton(button: any, isFavorite: boolean) {
+export function updateFavoriteButton(button: any, isFavorite: boolean) {
     if (button) {
         if (isFavorite) {
             button.textContent = 'Als Favorit entfernen';
@@ -63,6 +63,7 @@ function updateFavoriteButton(button: any, isFavorite: boolean) {
             button.textContent = 'Zu Favoriten hinzufügen';
             button.style.backgroundColor = '#3498db';
         }
+        return button;
     }
 }
 
@@ -72,7 +73,13 @@ function showFavorites() {
         const ul = document.createElement('ul');
         ul.classList.add("favorites-list");
         let item = "";
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const favoritesData = localStorage.getItem('favorites');
+        let favorites;
+        if (favoritesData) {
+            favorites = JSON.parse(favoritesData);
+        } else {
+            favorites = [];
+        }
         for (const dogName of favorites) {
             const listItem = document.createElement('li');
             listItem.textContent = dogName;
@@ -116,40 +123,58 @@ async function init() {
     }
     // Event-Handler für Hinzufügen und Entfernen von Favoriten
     const addToFavoritesButtons = document.getElementsByClassName('add-to-favorites');
-    for (const button of addToFavoritesButtons) {
-        button.disabled = false;
 
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    for (let i = 0; i < addToFavoritesButtons.length; i++) {
+        const button = addToFavoritesButtons[i] as HTMLButtonElement;
+        button.disabled = false;
+        const favoritesData = localStorage.getItem('favorites');
+        let favorites;
+        if (favoritesData) {
+            favorites = JSON.parse(favoritesData);
+        } else {
+            favorites = [];
+        }
         const selectedDogCar = button.closest('.dog-card');
-        const h2Element = selectedDogCar.querySelector('h2');
-        if (h2Element) {
-            const dogName = h2Element.id;
-            if (favorites.includes(dogName)) {
-                updateFavoriteButton(button, true);
+        if (selectedDogCar) {
+            const h2Element = selectedDogCar.querySelector('h2');
+            if (h2Element) {
+                const dogName = h2Element.id;
+                if (favorites.includes(dogName)) {
+                    updateFavoriteButton(button, true);
+                }
             }
         }
     }
     if (addToFavoritesButtons) {
         for (const button of addToFavoritesButtons) {
             button.addEventListener('click', (event) => {
-                const selectedDogCard = event.target.closest('.dog-card');
-                if (selectedDogCard) {
-                    const h2Element = selectedDogCard.querySelector('h2');
-                    if (h2Element) {
-                        const dogName = h2Element.id;
-                        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-                        if (!favorites.includes(dogName)) {
-                            // Hinzufügen des Hundes zu localStorage, wenn er noch nicht vorhanden ist
-                            favorites.push(dogName);
-                            favorites.sort();
-                            localStorage.setItem('favorites', JSON.stringify(favorites));
-                            showNotification(dogName + ' wurde zu Favoriten hinzugefügt', true);
-                            updateFavoriteButton(button, true);
-                        } else {
-                            const updatedFavorites = favorites.filter(item => item !== dogName);
-                            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-                            showNotification(dogName + ' wurde aus Favoriten entfernt', false);
-                            updateFavoriteButton(button, false);
+                if (event.target) {
+                    const target = event.target as HTMLElement;
+                    const selectedDogCard = target.closest('.dog-card');
+                    if (selectedDogCard) {
+                        const h2Element = selectedDogCard.querySelector('h2');
+                        if (h2Element) {
+                            const dogName = h2Element.id;
+                            const favoritesData = localStorage.getItem('favorites');
+                            let favorites;
+                            if (favoritesData) {
+                                favorites = JSON.parse(favoritesData);
+                            } else {
+                                favorites = [];
+                            }
+                            if (!favorites.includes(dogName)) {
+                                // Hinzufügen des Hundes zu localStorage, wenn er noch nicht vorhanden ist
+                                favorites.push(dogName);
+                                favorites.sort();
+                                localStorage.setItem('favorites', JSON.stringify(favorites));
+                                showNotification(dogName + ' wurde zu Favoriten hinzugefügt', true);
+                                updateFavoriteButton(button, true);
+                            } else {
+                                const updatedFavorites = favorites.filter((item: string) => item !== dogName);
+                                localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+                                showNotification(dogName + ' wurde aus Favoriten entfernt', false);
+                                updateFavoriteButton(button, false);
+                            }
                         }
                     }
                 }
