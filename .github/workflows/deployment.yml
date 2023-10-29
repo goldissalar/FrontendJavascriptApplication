@@ -33,8 +33,14 @@ jobs:
       - name: Build and Deploy
         run: node_modules/.bin/vite build --mode production
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload production-ready build from dist
+        uses: action/upload-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist
+          name: production-files
+          path: ./dist
+
+      #- name: Deploy to GitHub Pages
+        #uses: peaceiris/actions-gh-pages@v3
+        #with:
+          #github_token: ${{ secrets.GITHUB_TOKEN }}
+          #publish_dir: dist
