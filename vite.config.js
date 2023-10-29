@@ -16,6 +16,7 @@ export default ({ command }) => {
           index: resolve(__dirname, "./src/index.html"),
           about: resolve(__dirname, "./src/pages/html/about.html"),
           favorites: resolve(__dirname, "./src/pages/html/favorites.html"),
+          user: resolve(__dirname, "./src/pages/html/user.html"),
         },
         output: {
           entryFileNames: 'assets/[name]-[hash].js',
