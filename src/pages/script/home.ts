@@ -72,7 +72,7 @@ function showFavorites() {
         const ul = document.createElement('ul');
         ul.classList.add("favorites-list");
         let item = "";
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || '[]';
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         for (const dogName of favorites) {
             const listItem = document.createElement('li');
             listItem.textContent = dogName;
